@@ -81,7 +81,7 @@ module.exports = function(conf) {
 	 * @param  {str}      event    Event Name
 	 * @param  {Function} callback Action to attach
 	 */
-	this.on(event, callback) {
+	this.on = (event, callback) => {
 		_conf.events[event].push(callback);
 	}
 
@@ -146,7 +146,7 @@ module.exports = function(conf) {
 	/**
 	 * Free all ressources
 	 */
-	this.destroy() {
+	this.destroy = () => {
 		clearInterval(_conf.state.interval);
 	}
 
