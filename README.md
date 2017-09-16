@@ -11,6 +11,7 @@ NoSQL Database for node.js with all data loaded in ram and backup in json file.
 - No server
 - Fast (ram)
 - (REALLY) Easy to learn
+- JSON optimised
 
 ## Examples
 Here is a list of way to set and get the data
