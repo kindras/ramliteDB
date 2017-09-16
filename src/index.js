@@ -14,8 +14,8 @@ module.exports = function(conf) {
 			interval: null
 		},
 		events: {
-			loaded: [];
-		}
+			loaded: []
+		},
 		database: {}
 	};
 
