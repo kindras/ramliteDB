@@ -55,7 +55,8 @@ module.exports = function(conf) {
 			return;
 		}
 
-		pfsLib.write(_conf.user.backupFile, _conf.database).then(() => {
+
+		pfsLib.write(_conf.user.backupFile, JSON.stringify(_conf.database)).then(() => {
 			_conf.state.dataToBackup = false;
 		}).catch(() => {
 			_conf.user.log('Warning : Unable to save the backup file');
@@ -101,21 +102,20 @@ module.exports = function(conf) {
 
 		// Set in Ram
 		var path = _conf.database;
-		key.split('.').forEach((node, depth) => {
-			if (!path[node]) {
+		key = key.split('.');
+		key.forEach((node, depth) => {
+			if (depth === (key.length-1)) {
+				path[node] = value;
+			} else if (path[node] === undefined) {
 				path[node] = {};
 			}
 
-			if (depth === (key.length-1)) {
-				path[node] = value;
-			} else {
-				path = path[node];
-			}
+			path = path[node];
 		})
 
 		// Backup
 		_conf.state.dataToBackup = true;
-		if (_conf.state.backupOnSet) {
+		if (_conf.user.backupOnSet) {
 			setTimeout(_backup, 1);
 		}
 
