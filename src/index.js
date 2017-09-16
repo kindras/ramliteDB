@@ -14,7 +14,9 @@ module.exports = function(conf) {
 			interval: null
 		},
 		events: {
-			loaded: []
+			load: [],
+			backup: [],
+			unload: []
 		},
 		database: {}
 	};
@@ -39,7 +41,7 @@ module.exports = function(conf) {
 			try {
 				_conf.database = JSON.parse(data);
 				_conf.state.loaded = true;
-				_raise('loaded');
+				_raise('load');
 			}
 			catch (e) {
 				_conf.user.log('Error : Ill-formed backup file');
@@ -55,9 +57,9 @@ module.exports = function(conf) {
 			return;
 		}
 
-
 		pfsLib.write(_conf.user.backupFile, JSON.stringify(_conf.database)).then(() => {
 			_conf.state.dataToBackup = false;
+			_raise('backup');
 		}).catch(() => {
 			_conf.user.log('Warning : Unable to save the backup file');
 		});
@@ -151,6 +153,14 @@ module.exports = function(conf) {
 	 */
 	this.destroy = () => {
 		clearInterval(_conf.state.interval);
+		if (this.dataToBackup) {
+			_backup();
+			this.on('backup', () => {
+				_raise('unload');
+			})
+		} else {
+			_raise('unload');
+		}
 	}
 
 	if (_conf.user.backupInterval)

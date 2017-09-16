@@ -26,7 +26,7 @@ var rlDB = new RamliteDB({
 });
 
 // wait for database to be loaded
-rlDB.on('loaded', () => {
+rlDB.on('load', () => {
 	// set an numerical value
 	rlDB.set('version', 1.5);
 	rlDB.get('version'); // (numeric) 1.5
