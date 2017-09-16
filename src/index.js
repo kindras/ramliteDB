@@ -41,7 +41,7 @@ module.exports = function(conf) {
 			catch (e) {
 				_conf.user.log('Error : Ill-formed backup file');
 			}
-		}).catch({
+		}).catch(() => {
 			_conf.user.log('Error : Unable to read / write the backup file');
 		});
 	}
