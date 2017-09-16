@@ -15,7 +15,7 @@ NoSQL Database for node.js with all data loaded in ram and backup in json file.
 ## Examples
 Here is a list of way to set and get the data
 
-D
+```javascript
 // Load the library
 var RamliteDB = require('ramlitedb');
 
@@ -69,7 +69,7 @@ rlDB.on('loaded', () => {
 ```
 
 In the end you should have dataBase.json like this
-```dataBase.json
+```json
 {
 	"version": 1.5,
 	"cake": {
