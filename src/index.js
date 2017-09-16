@@ -39,6 +39,7 @@ module.exports = function(conf) {
 			try {
 				_conf.database = JSON.parse(data);
 				_conf.state.loaded = true;
+				_raise('loaded');
 			}
 			catch (e) {
 				_conf.user.log('Error : Ill-formed backup file');
