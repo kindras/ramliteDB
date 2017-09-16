@@ -69,6 +69,7 @@ module.exports = function(conf) {
 	function _checkDbReady() {
 		if (!_conf.state.loaded) {
 			_conf.user.log('Warning : trying to access/modify the DB while it is not loaded !!!');
+			throw 'Database not ready';
 		}
 
 		return true;
