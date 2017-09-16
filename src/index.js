@@ -31,8 +31,10 @@ module.exports = function(conf) {
 			return true;
 		}).catch(() => {
 			return pfsLib.write(_conf.user.backupFile, "{}");
+		}).catch((e) => {
+			_conf.user.log('Error : Unable to create the backup file :', e);
 		}).then(() => {
-			return pfsLib.readFile(_conf.user.backupFile);
+			return pfsLib.read(_conf.user.backupFile);
 		}).then((data) => {
 			try {
 				_conf.database = JSON.parse(data);
@@ -41,8 +43,8 @@ module.exports = function(conf) {
 			catch (e) {
 				_conf.user.log('Error : Ill-formed backup file');
 			}
-		}).catch(() => {
-			_conf.user.log('Error : Unable to read / write the backup file');
+		}).catch((e) => {
+			_conf.user.log('Error : Unable to read the backup file :', e);
 		});
 	}
 
