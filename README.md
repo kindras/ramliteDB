@@ -134,10 +134,10 @@ Here is our working database :
 {
 	"user": {
 		"Emma": {
-			password: "mySecretPassword"
+			"password": "mySecretPassword"
 		},
 		"Marc": {
-			password: "1234"
+			"password": "1234"
 		}
 	},
 }
