@@ -13,36 +13,6 @@ NoSQL Database for node.js with all data loaded in ram and backup in json file.
 - (REALLY) Easy to learn
 - JSON optimised
 
-## Doc
-### ramliteDB.set(key, value)
-Set a value
-
-- param  {str}    key   Key Path to the data (dot separated)
-- param  {mixed}  value The value to record
-- return {bool}         is that a success ?
-
-### ramliteDB.get(key)
-Get a value
-
-- param  {str} key Path to the data (dot separated)
-- return {mixed}   null/data
-
-### ramliteDB.destroy()
-Free all ressources (! this is asynchrone !)
-
-### ramliteDB.inject(key, values)
-Security function. Inject values in the "key path", checking no "dot" are injected by values.
-This ensure users don't try to access/set forbiden data
-
-- param  {string} key    A classic key, with ? in place of injection spots
-- param  {array}  values List of values to inject
-- return {object}        Chaining object
-
-### ramliteDB.on(event, callback)
-Attach an action to a specific event (load, backup, unload)
-
-- param  {str}      event    Event Name
-- param  {Function} callback Action to attach
 
 ## Examples
 Here is a list of way to set and get the data
@@ -122,6 +92,37 @@ In the end you should have dataBase.json like this
 }
 ```
 
+## Doc
+### ramliteDB.set(key, value)
+Set a value
+
+- param  {str}    key   Key Path to the data (dot separated)
+- param  {mixed}  value The value to record
+- return {bool}         is that a success ?
+
+### ramliteDB.get(key)
+Get a value
+
+- param  {str} key Path to the data (dot separated)
+- return {mixed}   null/data
+
+### ramliteDB.destroy()
+Free all ressources (! this is asynchrone !)
+
+### ramliteDB.inject(key, values)
+Security function. Inject values in the "key path", checking no "dot" are injected by values.
+This ensure users don't try to access/set forbiden data
+
+- param  {string} key    A classic key, with ? in place of injection spots
+- param  {array}  values List of values to inject
+- return {object}        Chaining object
+
+### ramliteDB.on(event, callback)
+Attach an action to a specific event (load, backup, unload)
+
+- param  {str}      event    Event Name
+- param  {Function} callback Action to attach
+
 ## Advanced features
 ### Secured injection
 
@@ -164,4 +165,4 @@ Let's see what you should do :
 ```
 
 ## Have fun folks ;)
-and give me feedback
+Feel free to contribute and give feedbacks
