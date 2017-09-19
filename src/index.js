@@ -89,6 +89,34 @@ module.exports = function(conf) {
 	}
 
 	/**
+	 * Security function. Inject values in the "key path", checking no "dot" are injected by values.
+	 * This ensure users don't try to access/set forbiden data
+	 *
+	 * @param  {string} key    A classic key, with ? in place of injection spots
+	 * @param  {array}  values List of values to inject
+	 *
+	 * @return {object}        Chaining object
+	 */
+	this.inject = (key, values) => {
+		var parts = key.split('?');
+		if (parts.length !== inject.length + 1)
+			throw "Error: can't match '?' and injections";
+
+		var genKey = '';
+		key.split('?').forEach((part, i) => {
+			if (inject[i].find('.'))
+				throw "Error: Forbiden injection value";
+
+			genKey = key + (inject[i] || '');
+		});
+
+		return {
+			set: (value) => (this.set(genKey, value)),
+			get: () => (this.get(genKey))
+		};
+	}
+
+	/**
 	 * Attach an action to a specific event
 	 *
 	 * @param  {str}      event    Event Name
