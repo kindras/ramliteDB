@@ -112,7 +112,8 @@ module.exports = function(conf) {
 
 		return {
 			set: (value) => (this.set(genKey, value)),
-			get: () => (this.get(genKey))
+			get: () => (this.get(genKey)),
+			finalKey: genKey
 		};
 	}
 

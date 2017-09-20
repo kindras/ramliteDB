@@ -1,6 +1,6 @@
 {
 	"name": "ramlitedb",
-	"version": "1.1.5",
+	"version": "1.2.0",
 	"description": "NoSQL Database for node.js with all data loaded in ram and backup in json file",
 	"main": "src/index.js",
 	"scripts": {
