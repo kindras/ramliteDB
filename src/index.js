@@ -104,7 +104,7 @@ module.exports = function(conf) {
 
 		var genKey = '';
 		key.split('?').forEach((part, i) => {
-			if (values[i].indexOf('.') !== -1)
+			if (values[i] && values[i].indexOf('.') !== -1)
 				throw "Error: Forbiden injection value";
 
 			genKey = key + (values[i] || '');
