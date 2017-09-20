@@ -99,15 +99,15 @@ module.exports = function(conf) {
 	 */
 	this.inject = (key, values) => {
 		var parts = key.split('?');
-		if (parts.length !== inject.length + 1)
+		if (parts.length !== values.length + 1)
 			throw "Error: can't match '?' and injections";
 
 		var genKey = '';
 		key.split('?').forEach((part, i) => {
-			if (inject[i].find('.'))
+			if (values[i].find('.'))
 				throw "Error: Forbiden injection value";
 
-			genKey = key + (inject[i] || '');
+			genKey = key + (values[i] || '');
 		});
 
 		return {
