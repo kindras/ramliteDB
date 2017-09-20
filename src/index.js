@@ -174,7 +174,7 @@ module.exports = function(conf) {
 		// get in Ram
 		var path = _conf.database;
 		key.split('.').forEach((node) => {
-			if (!path[node]) {
+			if (path[node] === undefined) {
 				return null;
 			}
 
