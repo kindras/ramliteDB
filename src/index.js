@@ -103,11 +103,11 @@ module.exports = function(conf) {
 			throw "Error: can't match '?' and injections";
 
 		var genKey = '';
-		key.split('?').forEach((part, i) => {
+		parts.forEach((part, i) => {
 			if (values[i] && values[i].indexOf('.') !== -1)
 				throw "Error: Forbiden injection value";
 
-			genKey = key + (values[i] || '');
+			genKey += part + (values[i] || '');
 		});
 
 		return {
